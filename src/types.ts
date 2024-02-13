@@ -411,8 +411,8 @@ export interface Internal {
   sendPrivateMsgAsync(user_id: id, message: string | readonly CQCode[], auto_escape?: boolean): Promise<void>
   sendGroupMsg(group_id: id, message: string | readonly CQCode[], auto_escape?: boolean): Promise<number>
   sendGroupMsgAsync(group_id: id, message: string | readonly CQCode[], auto_escape?: boolean): Promise<void>
-  sendMsg(user_id: id,group_id: id, message: string | readonly CQCode[], auto_escape?: boolean): Promise<number>;
-  sendMsgAsync(user_id: id,group_id: id, message: string | readonly CQCode[], auto_escape?: boolean): Promise<void>;
+  sendMsg(user_id: id, group_id: id, message: string | readonly CQCode[], message_type?:string, auto_escape?: boolean): Promise<number>;
+  sendMsgAsync(user_id: id,group_id: id, message: string | readonly CQCode[],message_type?:string, auto_escape?: boolean): Promise<void>;
   sendGroupForwardMsg(group_id: id, messages: readonly CQCode[]): Promise<number>
   sendGroupForwardMsgAsync(group_id: id, messages: readonly CQCode[]): Promise<void>
   sendPrivateForwardMsg(user_id: id, messages: readonly CQCode[]): Promise<number>
@@ -611,6 +611,7 @@ export class Internal {
 // messages
 Internal.defineExtract('send_private_msg', 'message_id', 'user_id', 'message', 'auto_escape')
 Internal.defineExtract('send_group_msg', 'message_id', 'group_id', 'message', 'auto_escape')
+Internal.defineExtract('send_msg', 'message_id','user_id', 'group_id', 'message', 'message_type', 'auto_escape')
 Internal.defineExtract('send_group_forward_msg', 'message_id', 'group_id', 'messages')
 Internal.defineExtract('send_private_forward_msg', 'message_id', 'user_id', 'messages')
 Internal.define('delete_msg', 'message_id')
